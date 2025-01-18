@@ -1,0 +1,446 @@
+{
+	"info": {
+		"_postman_id": "4f53f47e-a941-4ed8-8be3-e8cd45907cc6",
+		"name": "PROI-CHALLENGE",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "10031306",
+		"_collection_link": "https://lively-meadow-178210.postman.co/workspace/Proyectos-Personales~03afbaab-55cd-46f3-8937-da7508fbd495/collection/10031306-4f53f47e-a941-4ed8-8be3-e8cd45907cc6?action=share&source=collection_link&creator=10031306"
+	},
+	"item": [
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "/login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var json = JSON.parse(responseBody);",
+									"pm.environment.set(\"token\", json.data.access_token);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "admin@proi.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "proi#2025",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/auth/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						},
+						"description": "Este método sirve para identificar al usuario que accede al sistema."
+					},
+					"response": []
+				},
+				{
+					"name": "/logout",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/auth/logout",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"logout"
+							]
+						},
+						"description": "Este metodo sirve para cerrar sesión en el sistema. El token es invalidado."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "articles",
+			"item": [
+				{
+					"name": "articles",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//var json = JSON.parse(responseBody);",
+									"//pm.environment.set(\"token\", json.response.access_token);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true,
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/articles",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"articles"
+							],
+							"query": [
+								{
+									"key": "filters[0][key]",
+									"value": "stock",
+									"disabled": true
+								},
+								{
+									"key": "filters[0][operator]",
+									"value": ">",
+									"disabled": true
+								},
+								{
+									"key": "filters[0][value]",
+									"value": "10",
+									"disabled": true
+								},
+								{
+									"key": "filters[1][type]",
+									"value": "AND",
+									"disabled": true
+								},
+								{
+									"key": "filters[1][key]",
+									"value": "price_unit",
+									"disabled": true
+								},
+								{
+									"key": "filters[1][operator]",
+									"value": "<",
+									"disabled": true
+								},
+								{
+									"key": "filters[1][value]",
+									"value": "10",
+									"disabled": true
+								},
+								{
+									"key": "orderBy[key]",
+									"value": "name",
+									"disabled": true
+								},
+								{
+									"key": "orderBy[order]",
+									"value": "asc",
+									"disabled": true
+								},
+								{
+									"key": "select[]",
+									"value": "name",
+									"disabled": true
+								},
+								{
+									"key": "page",
+									"value": "8",
+									"disabled": true
+								},
+								{
+									"key": "perPage",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "search",
+									"value": "qws",
+									"disabled": true
+								},
+								{
+									"key": "categories[]",
+									"value": "343434",
+									"disabled": true
+								},
+								{
+									"key": "categories[]",
+									"value": "2",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Este método sirve para identificar al usuario que accede al sistema."
+					},
+					"response": []
+				},
+				{
+					"name": "articles/{articleId}",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//var json = JSON.parse(responseBody);",
+									"//pm.environment.set(\"token\", json.response.access_token);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/articles/4",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"articles",
+								"4"
+							]
+						},
+						"description": "Este método sirve para identificar al usuario que accede al sistema."
+					},
+					"response": []
+				},
+				{
+					"name": "articles",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//var json = JSON.parse(responseBody);",
+									"//pm.environment.set(\"token\", json.response.access_token);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "New Article 4",
+									"type": "text"
+								},
+								{
+									"key": "category_id",
+									"value": "8",
+									"type": "text"
+								},
+								{
+									"key": "stock",
+									"value": "15",
+									"type": "text"
+								},
+								{
+									"key": "price_unit",
+									"value": "2.30",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/articles",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"articles"
+							]
+						},
+						"description": "Este método sirve para identificar al usuario que accede al sistema."
+					},
+					"response": []
+				},
+				{
+					"name": "articles/{articleId}",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//var json = JSON.parse(responseBody);",
+									"//pm.environment.set(\"token\", json.response.access_token);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "stock",
+									"value": "0",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/articles/20",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"articles",
+								"20"
+							]
+						},
+						"description": "Este método sirve para identificar al usuario que accede al sistema."
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
