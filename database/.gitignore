@@ -1,0 +1,9 @@
+/public/storage
+/storage/*.key
+/vendor
+.env
+.env.backup
+docker-compose.override.yml
+/storage/*.csv
+/storage/*.txt
+composer.lock
